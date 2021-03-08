@@ -4,10 +4,10 @@ from pygame import mixer
 mixer.init()
 os.chdir(r'F:\pyano\tunes')
 #for A notes 
-def play_a3(event):
+def play_a3():
     mixer.music.load("a3.mp3")
     mixer.music.play()
-def play_a_3(event):
+def play_a_3():
     mixer.music.load("a-3.mp3")
     mixer.music.play()
     
@@ -65,7 +65,7 @@ def play_c_4():
 def play_c5():
     mixer.music.load("c5.mp3")
     mixer.music.play()
-def playc5():
+def play_c_5():
     mixer.music.load("c-5.mp3")
     mixer.music.play()
     
