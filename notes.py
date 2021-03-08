@@ -51,7 +51,7 @@ def play_b_5():
 def play_c3():
     mixer.music.load("c3.mp3")
     mixer.music.play()
-def play_c_3(event):
+def play_c_3():
     mixer.music.load("c-3.mp3")
     mixer.music.play()
 
