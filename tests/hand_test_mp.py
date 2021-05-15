@@ -7,8 +7,9 @@ import mediapipe as mp
 import numpy as np
 import notes as n
 
-##def inregion(coord,lower,upper):
-##    if(coord[0])
+
+cav = tk.Tk()
+
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
 cap = cv2.VideoCapture(0)
@@ -54,50 +55,64 @@ with mp_hands.Hands(
                 image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
             x_pos = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width
             y_pos = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight
-            if(x_pos>0 and x_pos<40 and y_pos > 60 and y_pos < 250):
+            if(x_pos>0 and x_pos<40 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_a3()
-                
-            elif(x_pos>40 and x_pos<80 and y_pos > 60 and y_pos < 250):
+                count=1
+            elif(x_pos>40 and x_pos<80 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_b3()
-                
-            elif(x_pos>80 and x_pos<120 and y_pos > 60 and y_pos < 250):
+                count=1
+            elif(x_pos>80 and x_pos<120 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_c3()
+                count=1
 
-            elif(x_pos>120 and x_pos<160 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>120 and x_pos<160 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_d3()
+                count=1
 
-            elif(x_pos>200 and x_pos<240 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>200 and x_pos<240 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_e3()
+                count=1
 
-            elif(x_pos>240 and x_pos<280 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>240 and x_pos<280 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_f3()
                 
-            elif(x_pos>280 and x_pos<320 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>280 and x_pos<320 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_g3()
+                count=1
 
-            elif(x_pos>320 and x_pos<360 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>320 and x_pos<360 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_a4()
+                count=1
 
-            elif(x_pos>360 and x_pos<400 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>360 and x_pos<400 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_b4()
+                count=1
 
-            elif(x_pos>400 and x_pos<440 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>400 and x_pos<440 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_c4()
+                count=1
 
-            elif(x_pos>440 and x_pos<480 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>440 and x_pos<480 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_d4()
+                count=1
 
-            elif(x_pos>480 and x_pos<520 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>480 and x_pos<520 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_e4()
+                count=1
                 
-            elif(x_pos>520 and x_pos<560 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>520 and x_pos<560 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_f4()
+                count=1
                 
-            elif(x_pos>560 and x_pos<600 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>560 and x_pos<600 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_g4()
+                count=1
 
-            elif(x_pos>600 and x_pos<640 and y_pos > 60 and y_pos < 250):
+            elif(x_pos>600 and x_pos<640 and y_pos > 60 and y_pos < 250 and count==0):
                 n.play_a5()
+                count=1
+            else:
+                count = 0
 
         cv2.imshow('MediaPipe Hands', image)
         if cv2.waitKey(5) & 0xFF == 27:
