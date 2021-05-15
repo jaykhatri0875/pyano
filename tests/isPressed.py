@@ -6,6 +6,7 @@ import time
 import mediapipe as mp
 import numpy as np
 import csv
+import math
 
 data_file = open('data/datapoints.csv','w',newline='')
 writer = csv.writer(data_file)
@@ -13,6 +14,17 @@ writer.writerow(["tip_x","tip_y","dip_x","dip_y","pip_x","pip_y",'ispressed'])
 def storeData(state):
     writer.writerow(state)
     
+def dist(p1x,p2x,p1y,p2y):
+    return math.sqrt((p2y-p1y)**2+(p2x-p1x)**2)*100
+
+def isP(arr):
+    tx,ty,dx,dy,px,py=arr
+    dis1 = dist(tx,dx,ty,dy)
+    dis2 = dist(tx,px,ty,py)
+    dis3 = dist(dx,px,dy,py)
+    if(dis1 < 3.4 and dis2 < 5 and dis3 < 4):
+        return True
+    return       
 ##def inregion(coord,lower,upper):
 ##    if(coord[0])
 mp_drawing = mp.solutions.drawing_utils
@@ -48,14 +60,20 @@ with mp_hands.Hands(
             y_pos_dip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_DIP].y
             x_pos_pip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].x 
             y_pos_pip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].y 
-            if cv2.waitKey(33) == ord('a'):
-                print('pressed')
+##            if cv2.waitKey(33) == ord('a'):
+##                print('pressed')
+##                state = 'pressed'
+##                storeData([x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip,1])
+##                print([x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip,1])
+##            if cv2.waitKey(33) == ord('s'):
+##                print('not pressed')
+##                state='not pressed'
+##                storeData([x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip,0])
+##                print([x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip,0])
+            if(isP([x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip])):
                 state = 'pressed'
-                storeData([x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip,1])
-            if cv2.waitKey(33) == ord('s'):
-                print('not pressed')
-                state='not pressed'
-                storeData([x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip,0])
+            elif(not isP([x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip])):
+                state = 'not pressed'
         cv2.putText(image,state,(50,50),font,1,(0,255,0),2,cv2.LINE_4)
         cv2.imshow('MediaPipe Hands', image)
         if cv2.waitKey(33)==ord('q'):
