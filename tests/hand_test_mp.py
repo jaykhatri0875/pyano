@@ -6,9 +6,18 @@ import time
 import mediapipe as mp
 import numpy as np
 import notes as n
+import math 
+def dist(p1x,p2x,p1y,p2y):
+    return math.sqrt((p2y-p1y)**2+(p2x-p1x)**2)*100
 
-
-cav = tk.Tk()
+def isP(arr):
+    tx,ty,dx,dy,px,py=arr
+    dis1 = dist(tx,dx,ty,dy)
+    dis2 = dist(tx,px,ty,py)
+    dis3 = dist(dx,px,dy,py)
+    if(dis1 < 3.4 and dis2 < 5 and dis3 < 4):
+        return True
+    return 
 
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
@@ -18,6 +27,7 @@ image_hight = cap.get(4)
 green = (0,255,0)
 x_pos,y_pos = None,None
 count = 0
+f_vec = []
 #'http://192.168.0.101:8080/video'
 print("started getting feed")
 with mp_hands.Hands(
@@ -53,62 +63,69 @@ with mp_hands.Hands(
           for hand_landmarks in results.multi_hand_landmarks:
             mp_drawing.draw_landmarks(
                 image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
-            x_pos = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width
-            y_pos = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight
-            if(x_pos>0 and x_pos<40 and y_pos > 60 and y_pos < 250 and count==0):
+            x_pos_tip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x 
+            y_pos_tip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+            x_pos_dip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_DIP].x 
+            y_pos_dip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_DIP].y
+            x_pos_pip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].x 
+            y_pos_pip = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].y
+            f_vec = [x_pos_tip,y_pos_tip,x_pos_dip,y_pos_dip,x_pos_pip,y_pos_pip]
+            x_pos = x_pos_tip * image_width
+            y_pos = y_pos_tip * image_hight
+            if(x_pos>0 and x_pos<40 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_a3()
                 count=1
-            elif(x_pos>40 and x_pos<80 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>40 and x_pos<80 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_b3()
                 count=1
-            elif(x_pos>80 and x_pos<120 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>80 and x_pos<120 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_c3()
                 count=1
 
-            elif(x_pos>120 and x_pos<160 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>120 and x_pos<160 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_d3()
                 count=1
 
-            elif(x_pos>200 and x_pos<240 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>200 and x_pos<240 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_e3()
                 count=1
 
-            elif(x_pos>240 and x_pos<280 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>240 and x_pos<280 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_f3()
                 
-            elif(x_pos>280 and x_pos<320 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>280 and x_pos<320 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_g3()
                 count=1
 
-            elif(x_pos>320 and x_pos<360 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>320 and x_pos<360 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_a4()
                 count=1
 
-            elif(x_pos>360 and x_pos<400 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>360 and x_pos<400 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_b4()
                 count=1
 
-            elif(x_pos>400 and x_pos<440 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>400 and x_pos<440 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_c4()
                 count=1
 
-            elif(x_pos>440 and x_pos<480 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>440 and x_pos<480 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_d4()
                 count=1
 
-            elif(x_pos>480 and x_pos<520 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>480 and x_pos<520 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_e4()
                 count=1
                 
-            elif(x_pos>520 and x_pos<560 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>520 and x_pos<560 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_f4()
                 count=1
                 
-            elif(x_pos>560 and x_pos<600 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>560 and x_pos<600 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_g4()
                 count=1
 
-            elif(x_pos>600 and x_pos<640 and y_pos > 60 and y_pos < 250 and count==0):
+            elif(x_pos>600 and x_pos<640 and y_pos > 60 and y_pos < 250 and count==0 and isP(f_vec)):
                 n.play_a5()
                 count=1
             else:
