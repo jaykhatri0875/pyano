@@ -2,7 +2,7 @@
 import os
 from pygame import mixer
 mixer.init()
-os.chdir(r'F:\pyano\tunes')
+os.chdir(r'..\tunes')
 #for A notes 
 def play_a3():
     mixer.music.load("a3.mp3")
