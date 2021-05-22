@@ -17,4 +17,4 @@ A3 to G5 keys are available to play on screen.
 
 Make gesture of key pressing in Air and it will play the key for you !
 
-![not pressed state](https://github.com/jaykhatri0875/pyano/blob/master/sample/not_pressed.png?raw=true)
+![not pressed state](https://github.com/jaykhatri0875/pyano/blob/master/sample/pressed.png?raw=true)
