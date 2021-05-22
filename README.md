@@ -1,6 +1,5 @@
 # pyano
-python piano
-it is virtual piano in Air 
+Pyano is virtual piano in Air. <br/>
 It uses mediapipe for hand recognition purpose. MediaPipe is the simplest tool to build ML based applications. <br/>
 No GPU is required to run the project !
 # Requires:
