@@ -3,7 +3,10 @@ python piano
 it is virtual piano in Air 
 
 # Requires:
-opencv-python ,pygame - 1.9.6, mediapipe 
+python 3.6 <br/>opencv-python<br/> pygame - 1.9.6<br/> mediapipe <br/>
+
+Install using: pip3 install opencv-python <br/>
+
 
 # Run using:
 python3 src/pyano.py 
