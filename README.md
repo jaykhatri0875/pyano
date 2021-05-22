@@ -1,14 +1,12 @@
 # pyano
 python piano
 it is virtual piano in Air 
-
+It uses mediapipe for hand recognition purpose. MediaPipe is the simplest tool to build ML based applications. <br/>
+No GPU is required to run the project !
 # Requires:
 python 3.6 <br/>opencv-python<br/> pygame - 1.9.6<br/> mediapipe <br/>
 
-Install using: <br/> pip3 install opencv-python <br/>
-pip3 install pygame==1.9.6 <br/>
-pip3 install mediapipe<br/>
-
+Install using: <br/> pip3 install -r requirements.txt<br/>
 
 
 # Run using:
